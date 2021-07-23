@@ -1,0 +1,21 @@
+// Sample protofile
+
+syntax = "proto3";
+
+package ansys.api.sample.sample.v1;
+
+// Sample Service
+service Sample {
+  // Sends a greeting
+  rpc SaySample (SampleRequest) returns (SampleReply) {}
+}
+
+// Sample request message
+message SampleRequest {
+  string test = 1;
+}
+
+// Response message
+message SampleReply {
+  string message = 1;
+}
