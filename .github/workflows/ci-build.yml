@@ -2,12 +2,6 @@ name: Build Package
 
 on: [push, pull_request, workflow_dispatch]
 
-    name: ${{ matrix.os }} / pip / ${{ matrix.qt }} / pyvista-${{ matrix.pyvista }}
-    runs-on: ${{ matrix.os }}
-
-  pip:
-
-
 jobs:
   ci:
     name: ${{ matrix.os }} / pip / ${{ matrix.qt }} / pyvista-${{ matrix.pyvista }}
