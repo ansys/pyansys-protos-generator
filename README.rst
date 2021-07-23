@@ -86,7 +86,7 @@ You can run this within python with:
 
    from ansys.tools.protos_generator.generator import package_protos
    protosfiles_path = 'proto-samples/ansys/api/sample/v1/'
-   outdir = 'C:/tmp'  # or linux '/tmp'
+   outdir = 'C:/tmp'  # or Linux: '/tmp'
    dist_file = package_protos(protosfiles_path, outdir)
 
 
@@ -160,7 +160,7 @@ the next version of the API you choose to expose.
 
 For all other questions regarding gRPC standards, please reference
 `gRPC Documentation <https://grpc.io/docs/>`__, `gRPC Motivation and
-Design Principles `https://grpc.io/blog/principles/>`_, and `API
+Design Principles <https://grpc.io/blog/principles/>`_, and `API
 Design Guide <https://cloud.google.com/apis/design>`_.
 
 

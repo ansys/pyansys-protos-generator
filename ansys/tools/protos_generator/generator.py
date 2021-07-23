@@ -91,7 +91,7 @@ __version__ = '{version[0]}.{version[1]}.{version[2]}'  # major.minor.patch
 
 
 def construct_package_name(path):
-    """Convert a directory containings the protos files to a valid
+    """Convert a directory containing the protos files to a valid
     python package name.
 
     Parameters
@@ -104,7 +104,7 @@ def construct_package_name(path):
     Returns
     -------
     str
-        Name of the package separted by dashes.  This name will be used on pypi
+        Name of the package separated by dashes.  This name will be used on pypi.
     str
         Name of the package separated by dots.  This name will be used
         by python on import and in the ``setup.py``
