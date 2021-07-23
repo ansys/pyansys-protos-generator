@@ -16,12 +16,14 @@ Install the python packaging tool with:
 
 Usage
 -----
+Once installed, this package can be run directly from the command line with:
+
 .. code::
 
-   python -m ansys-tools-protos-generator <directory-containing-protosfiles>
+   python -m ansys.tools.protos_generator <directory-containing-protosfiles>
 
 The ``protos-samples`` directory contains a simple sample service
-containing the following directory structure:
+containing the following directory structure.
 
 ::
 
@@ -40,7 +42,52 @@ Running:
 
 Will generate the following python package:
 
-ansys-api-sample-v1_0.3.0.
+::
+
+   dist/ansys-api-sample-v1-0.5.3.tar.gz
+
+This package can then be installed via:
+
+.. code::
+
+   pip install dist/ansys-api-sample-v1-0.5.3.tar.gz
+
+Or uploaded to pypi with:
+
+.. code::
+
+   twine upload dist/ansys-api-sample-v1-0.5.3.tar.gz
+
+Contact alexander.kaszynski@ansys.com for the token and credentials to
+upload to pypi under the pyansys account.
+
+
+Non-Default Directory
+~~~~~~~~~~~~~~~~~~~~~
+You can change the default directory to a non-default directory with:
+
+.. code::
+
+   python -m ansys.tools.protos_generator <protosfiles_path> <outdir>
+
+For more details, run:
+
+.. code::
+
+   python -m ansys.tools.protos_generator -h
+
+
+Run from within Python
+~~~~~~~~~~~~~~~~~~~~~~
+
+You can run this within python with:
+
+.. code:: python
+
+   from ansys.tools.protos_generator.generator import package_protos
+   protosfiles_path = 'proto-samples/ansys/api/sample/v1/'
+   outdir = 'C:/tmp'  # or linux '/tmp'
+   dist_file = package_protos(protosfiles_path, outdir)
 
 
 Ansys gRPC Directory Structure - Standards
@@ -115,3 +162,16 @@ For all other questions regarding gRPC standards, please reference
 `gRPC Documentation <https://grpc.io/docs/>`__, `gRPC Motivation and
 Design Principles `https://grpc.io/blog/principles/>`_, and `API
 Design Guide <https://cloud.google.com/apis/design>`_.
+
+
+Development
+-----------
+Run unit testing with:
+
+.. code::
+
+   git clone https://github.com/pyansys/pyansys-protos-generator.git
+   cd pyansys-protos-generator
+   pip install -e .
+   pip install requirements_test.txt
+   pytest -v

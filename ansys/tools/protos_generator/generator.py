@@ -318,10 +318,10 @@ def package_protos(protos_path, dist_dir, wheel=False):
                          cwd=package_path)
     print(p.stdout.read().decode())
 
-    
-    dist_dir = os.path.join(os.getcwd(), 'dist')
+    if dist_dir is None:
+        dist_dir = os.path.join(os.getcwd(), 'dist')
     if not os.path.isdir(dist_dir):
-        os.mkdir(dist_dir)
+        os.makedirs(dist_dir)
 
     if wheel:
         whl_glob = os.path.join(package_path, 'dist', '*.whl')

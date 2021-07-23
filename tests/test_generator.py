@@ -49,7 +49,9 @@ def test_generate(tmpdir):
     output_directory = str(tmpdir.mkdir("tmpdir"))
     dist_file = generator.package_protos(SAMPLE_DIRECTORY, output_directory)
     name, package_name, paths = generator.construct_package_name('proto-samples/ansys/api/sample/v1')
-    SAMPLE_DIRECTORY
+
+    # verify file is within the output directory
+    assert os.path.isfile(os.path.join(output_directory, Path(dist_file).name))
 
     # verify name in sdist
     assert name in Path(dist_file).name
@@ -73,7 +75,6 @@ def test_generate(tmpdir):
     p = subprocess.Popen(f"{sys.executable} -m pip install {dist_file}",
                          stdout=subprocess.PIPE,
                          shell=True)
-                         # cwd=package_path)
     output = p.stdout.read().decode()
 
     assert f'Successfully installed {name}' in output 
@@ -96,3 +97,12 @@ def test_generate_wheel(tmpdir):
     whl_file = generator.package_protos(SAMPLE_DIRECTORY, output_directory, wheel=True)
     assert whl_file.endswith('whl')
     assert name.replace('-', '_') in Path(whl_file).name
+
+
+def test_run_main(tmpdir):
+    this_package = 'ansys-tools-protos-generator'
+    protopath = 'proto-samples/ansys/api/sample/v1'
+    output_directory = str(tmpdir.mkdir("tmpdir"))
+
+    cmd = f"{sys.executable} -m pip {this_package} {protopath} {output_directory}"
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
