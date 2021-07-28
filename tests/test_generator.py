@@ -76,7 +76,6 @@ def test_generate(tmpdir):
                          stdout=subprocess.PIPE,
                          shell=True)
     output = p.stdout.read().decode()
-
     assert f'Successfully installed {name}' in output 
 
     from ansys.api.sample.v1 import sample_pb2
@@ -87,7 +86,10 @@ def test_generate(tmpdir):
                          stdout=subprocess.PIPE,
                          shell=True)
     output = p.stdout.read().decode()
-    assert f'Successfully uninstalled {name}' in output
+
+    # ignore virtual enviornments
+    if 'outside environment' not in output:
+        assert f'Successfully uninstalled {name}' in output
 
 
 def test_generate_wheel(tmpdir):
