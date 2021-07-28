@@ -2,7 +2,7 @@ PyAnsys Protos Generator Packaging Tool
 =======================================
 
 This package allows you to automatically generate a python package
-from protofiles stored according to gRPC protofile conventions.
+from proto files stored according to gRPC proto file conventions.
 
 Installation
 ------------
@@ -93,7 +93,7 @@ You can run this within python with:
 Ansys gRPC Directory Structure - Standards
 ------------------------------------------
 
-In the gRPC protofile naming and directory convention see (`gRPC
+In the gRPC proto file naming and directory convention see (`gRPC
 standards <https://grpc.io/docs/>`__), each module is placed in a
 directory tree that contains the origin of the module.  The origin of
 all modules should be ``ansys``, followed by ``api``, followed by
