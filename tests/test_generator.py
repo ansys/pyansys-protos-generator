@@ -87,7 +87,7 @@ def test_generate(tmpdir):
                          shell=True)
     output = p.stdout.read().decode()
 
-    # ignore virtual enviornments
+    # ignore virtual environments
     if 'outside environment' not in output:
         assert f'Successfully uninstalled {name}' in output
 
