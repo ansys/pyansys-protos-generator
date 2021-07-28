@@ -75,3 +75,6 @@ docker/mapdl/v212
 
 # temp testing
 tmp.out
+
+# Python virtual environment
+/venv/

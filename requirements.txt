@@ -1,0 +1,8 @@
+# #############################################################################
+# requirements
+# #############################################################################
+grpcio-tools >= 1.39.0
+# https://github.com/grpc/grpc/tree/master/tools/distrib/python/grpcio_tools
+
+twine >= 3.4.2
+# https://github.com/pypa/twine/
