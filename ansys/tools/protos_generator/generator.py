@@ -230,7 +230,7 @@ def package_protos(protos_path, dist_dir, wheel=False):
     for filename in grpc_source_files:
         relative_path = filename.replace(grpc_source_path, '')
         module_name = '.'.join(re.split(r'\\|/', relative_path))
-        module_name = module_name.replace('.py', '')
+        module_name = module_name.rstrip('.py')
         module_name = module_name.strip('.')
         py_source[module_name] = open(filename).read()
 

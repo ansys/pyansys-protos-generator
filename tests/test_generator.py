@@ -78,9 +78,11 @@ def test_generate(tmpdir):
     output = p.stdout.read().decode()
     assert f'Successfully installed {name}' in output 
 
-    from ansys.api.sample.v1 import sample_pb2
-    assert hasattr(sample_pb2, 'SampleReply')
-    assert hasattr(sample_pb2, 'SampleRequest')
+    from ansys.api.sample.v1 import pysample_pb2
+    assert hasattr(pysample_pb2, 'SampleReply')
+    assert hasattr(pysample_pb2, 'SampleRequest')
+    from ansys.api.sample.v1 import pysample_pb2_grpc
+    assert hasattr(pysample_pb2_grpc, 'Sample')
 
     p = subprocess.Popen(f"{sys.executable} -m pip uninstall {name} -y",
                          stdout=subprocess.PIPE,
