@@ -1,0 +1,43 @@
+{% set name = "pyansys-protos-generator" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/pyansys/pyansys-protos-generator
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements: # Package requirements
+  build: # To build. I took these from requirements_build
+    - python
+    - setuptools>=41.0.0
+    - wheel>=0.33.0
+  host: # For cross platform packages, requirements.
+    - pip
+    - python
+  run: # To run the package. I took this from setup. But I think Conda should take from there to.
+    - python
+
+# Since we do CI testing in `main` I'm going to skip this testing at the moment.
+# test:
+#   imports:
+#     - click
+
+about:
+  home: https://mapdldocs.pyansys.com/
+  license: MIT
+  license_family: MIT
+  summary: Automatically generate a python package from protofiles stored according to gRPC protofile conventions
+  doc_url: https://mapdldocs.pyansys.com/
+  dev_url: https://github.com/pyansys/pyansys-protos-generator 
+
+extra:
+  maintainers:
+    - Alex Kaszynski
+    - German Martinez-Ayuso
