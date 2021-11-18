@@ -99,7 +99,8 @@ jobs:
 
       - name: Building Conda packages
         run: |
-          conda config --set anaconda_upload no
+          conda config --set anaconda_upload yes
+          anaconda login --username german.ayuso --password ${{ secrets.ANACONDA_PASS }}
           mkdir OUTPUT_FOLDER
           conda build . --no-test --output-folder OUTPUT_FOLDER
         # --quiet --no-test --token ${{ secrets.ANACONDA_TOKEN }} --skip-existing --no-test --output-folder OUTPUT_FOLDER 
@@ -107,4 +108,4 @@ jobs:
       - name: Upload Conda packages
         run: |
           anaconda login --username german.ayuso --password ${{ secrets.ANACONDA_PASS }}
-          anaconda upload OUTPUT_FOLDER/*.tar.bz2
+          anaconda upload OUTPUT_FOLDER/*/*.tar.bz2
