@@ -50,3 +50,23 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_TOKEN }}
+
+      - name: Installing Conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-conda: false  # To not change the python version
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Installing Conda-build
+        run: conda install conda-build
+      
+      - name: Building and upload Conda packages
+        run: conda build . --quiet --skip-existing --no-test --output-folder OUTPUT_FOLDER --token ${{ secrets.ANACONDA_TOKEN }}
+      
+      # - name: Generating all files for all archs
+      #   run: |
+      #     conda convert --platform all ~/anaconda/conda-bld/linux-64/click-7.0-py37_0.tar.bz2 -o outputdir/
+      
+      # - name: Upload to Anaconda
+      #   run: |
+
