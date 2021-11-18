@@ -54,12 +54,12 @@ jobs:
   conda:
     name: Conda build and publish
     runs-on: 'ubuntu-latest'
-    needs: ci
+    # needs: ci
 
     defaults:
       run:
         shell: bash
-     
+
     steps: 
       - name: Setup Python
         uses: actions/setup-python@v2.2.2
@@ -76,22 +76,35 @@ jobs:
       - name: Conda info
         shell: bash -l {0}
         run: conda info
-        
+
       - name: Installing Conda-build
         run: |
           echo 'Test'
           conda install conda-build
-      
+
+      - name: Installing Anaconda-client
+        run: conda install anaconda-client
+
       - name: Getting the skeleton
         run: conda skeleton pypi ansys-tools-protos-generator
-      
-      - name: Building and upload Conda packages
-        run: conda build . --quiet --skip-existing --no-test --output-folder OUTPUT_FOLDER --token ${{ secrets.ANACONDA_TOKEN }}
-      
-      # - name: Generating all files for all archs
-      #   run: |
-      #     conda convert --platform all ~/anaconda/conda-bld/linux-64/click-7.0-py37_0.tar.bz2 -o outputdir/
-      
-      # - name: Upload to Anaconda
-      #   run: |
 
+      - name: Installing compilers
+        run: |
+          echo "Installing ..."
+          sudo apt update
+          sudo apt install build-essential
+          echo "==="
+          gcc --version
+          echo "==="
+
+      - name: Building Conda packages
+        run: |
+          conda config --set anaconda_upload no
+          mkdir OUTPUT_FOLDER
+          conda build . --no-test --output-folder OUTPUT_FOLDER
+        # --quiet --no-test --token ge-a3eed621-bdc7-4c6c-85ea-f6257fc6b800 #${{ secrets.ANACONDA_TOKEN }} --skip-existing --no-test --output-folder OUTPUT_FOLDER 
+
+      - name: Upload Conda packages
+        run: |
+          anaconda login --username german.ayuso --password GgW_W3mUR4VzdAF
+          anaconda upload OUTPUT_FOLDER/*.tar.bz2
