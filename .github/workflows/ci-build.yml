@@ -54,7 +54,7 @@ jobs:
   conda:
     name: Conda build and publish
     runs-on: 'ubuntu-latest'
-    # needs: ci
+    needs: ci
 
     defaults:
       run:
@@ -85,9 +85,6 @@ jobs:
       - name: Installing Anaconda-client
         run: conda install anaconda-client
 
-      - name: Getting the skeleton
-        run: conda skeleton pypi ansys-tools-protos-generator
-
       - name: Installing compilers
         run: |
           echo "Installing ..."
@@ -97,14 +94,17 @@ jobs:
           gcc --version
           echo "==="
 
+      - name: Getting the skeleton
+        run: conda skeleton pypi ansys-tools-protos-generator
+
       - name: Building Conda packages
         run: |
           conda config --set anaconda_upload no
           mkdir OUTPUT_FOLDER
           conda build . --no-test --output-folder OUTPUT_FOLDER
-        # --quiet --no-test --token ge-a3eed621-bdc7-4c6c-85ea-f6257fc6b800 #${{ secrets.ANACONDA_TOKEN }} --skip-existing --no-test --output-folder OUTPUT_FOLDER 
+        # --quiet --no-test --token ${{ secrets.ANACONDA_TOKEN }} --skip-existing --no-test --output-folder OUTPUT_FOLDER 
 
       - name: Upload Conda packages
         run: |
-          anaconda login --username german.ayuso --password GgW_W3mUR4VzdAF
+          anaconda login --username german.ayuso --password ${{ secrets.ANACONDA_PASS }}
           anaconda upload OUTPUT_FOLDER/*.tar.bz2
