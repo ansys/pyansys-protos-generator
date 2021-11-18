@@ -54,6 +54,7 @@ jobs:
   conda:
     name: Conda build and publish
     runs-on: 'ubuntu-latest'
+    needs: ci
 
     defaults:
       run:
@@ -68,10 +69,18 @@ jobs:
       - name: Installing Conda
         uses: conda-incubator/setup-miniconda@v2
         with:
-          activate-conda: true
+          miniconda-version: "latest"
+          activate-environment: test
+          auto-update-conda: true
 
+      - name: Conda info
+        shell: bash -l {0}
+        run: conda info
+        
       - name: Installing Conda-build
-        run: conda install conda-build
+        run: |
+          echo 'Test'
+          conda install conda-build
       
       - name: Getting the skeleton
         run: conda skeleton pypi ansys-tools-protos-generator
