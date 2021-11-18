@@ -11,13 +11,12 @@ source:
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  # script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements: # Package requirements
   build: # To build. I took these from requirements_build
     - python
-    - setuptools>=41.0.0
-    - wheel>=0.33.0
+    - pip
   host: # For cross platform packages, requirements.
     - pip
     - python
