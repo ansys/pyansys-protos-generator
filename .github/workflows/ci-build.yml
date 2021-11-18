@@ -61,7 +61,7 @@ jobs:
         run: conda install conda-build
       
       - name: Building and upload Conda packages
-        run: conda build . --quiet --skip-existing --no-test --output-folder OUTPUT_FOLDER --token ${{ secrets.ANACONDA_TOKEN }}
+        run: conda build . --quiet --skip-existing --no-test --single-version-externally-managed --output-folder OUTPUT_FOLDER --token ${{ secrets.ANACONDA_TOKEN }}
       
       # - name: Generating all files for all archs
       #   run: |
