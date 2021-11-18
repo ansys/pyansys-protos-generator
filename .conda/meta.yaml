@@ -15,7 +15,7 @@ build:
 
 requirements: # Package requirements
   build: # To build. I took these from requirements_build
-    - python
+    - python >=3.6
     - pip
     - grpcio-tools
     - wheel 
@@ -23,7 +23,7 @@ requirements: # Package requirements
     - setuptools
 
   host: # For cross platform packages, requirements.
-    - python
+    - python >=3.6
     - pip
     - grpcio-tools
     - wheel 
@@ -31,7 +31,7 @@ requirements: # Package requirements
     - setuptools
 
   run: # To run the package. I took this from setup. But I think Conda should take from there to.
-    - python
+    - python >=3.6
     - pip
     - grpcio-tools
     - wheel 
