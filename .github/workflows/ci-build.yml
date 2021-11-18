@@ -98,14 +98,12 @@ jobs:
         run: conda skeleton pypi ansys-tools-protos-generator
 
       - name: Building Conda packages
+        shell: bash -l {0}
         run: |
           conda config --set anaconda_upload yes
-          conda init bash
-          conda activate test
           anaconda login --username german.ayuso --password ${{ secrets.ANACONDA_PASS }}
           mkdir OUTPUT_FOLDER
           conda build . --no-test --output-folder OUTPUT_FOLDER
-        # --quiet --no-test --token ${{ secrets.ANACONDA_TOKEN }} --skip-existing --no-test --output-folder OUTPUT_FOLDER 
 
       - name: Upload Conda packages
         run: |
