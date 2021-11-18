@@ -17,11 +17,26 @@ requirements: # Package requirements
   build: # To build. I took these from requirements_build
     - python
     - pip
+    - grpcio-tools
+    - wheel 
+    - twine
+    - setuptools
+
   host: # For cross platform packages, requirements.
-    - pip
     - python
+    - pip
+    - grpcio-tools
+    - wheel 
+    - twine
+    - setuptools
+
   run: # To run the package. I took this from setup. But I think Conda should take from there to.
     - python
+    - pip
+    - grpcio-tools
+    - wheel 
+    - twine
+    - setuptools
 
 # Since we do CI testing in `main` I'm going to skip this testing at the moment.
 # test:
