@@ -102,9 +102,9 @@ jobs:
         run: |
           conda config --set anaconda_upload yes
           mkdir OUTPUT_FOLDER
-          conda build . --no-test --output-folder OUTPUT_FOLDER
+          conda build . --no-test --output-folder OUTPUT_FOLDER --token ${{ secrets.ANACONDA_TOKEN }}
 
       - name: Upload Conda packages
         run: |
-          $conda/anaconda login --username german.ayuso --password ${{ secrets.ANACONDA_PASS }}
+          /usr/share/miniconda3/Scripts/anaconda login --username german.ayuso --password ${{ secrets.ANACONDA_PASS }}
           anaconda upload OUTPUT_FOLDER/*/*.tar.bz2
