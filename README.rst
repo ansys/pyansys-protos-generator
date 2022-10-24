@@ -1,3 +1,8 @@
+**Deprecation Notice:** this repo is archived and moved to ansys/ansys-tools-protoc-helper
+##########################################################################################
+This repository has been depricated in favor of `ansys/ansys-tools-protoc-helper <https://github.com/ansys/ansys-tools-protoc-helper>`_. It's been archived, but not deleted just in case anyone might find it useful.
+
+
 PyAnsys Protos Generator Packaging Tool
 =======================================
 
